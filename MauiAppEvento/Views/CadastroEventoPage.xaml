@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MauiAppEvento.ViewModels"
-             x:Class="MauiAppEvento.Views.CadastroEventoPage"
-             Title="Cadastro de Evento">
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="MauiAppEvento.Views.CadastroEventoPage"             
+             BackgroundColor="LightGray">
 
     <ContentPage.BindingContext>
         <viewmodels:CadastroEventoViewModel />
@@ -11,30 +12,84 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
+            <Frame BorderColor="LightSlateGray"
+                    BackgroundColor="white"
+                    CornerRadius="10"
+                    Padding="5"
+                    HasShadow="False">
+            <Label Text="Cadastro do Evento"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    TextColor="LightSlateGrey"
+                    FontAttributes="Italic"
+                    FontFamily="Super Joyful"/>
+            </Frame>
 
             <Entry Placeholder="Nome do evento"
-                   Text="{Binding Evento.Nome}" />
+                   Text="{Binding Evento.Nome}" 
+                   FontAttributes="Italic"
+                   BackgroundColor="White"/>
 
-            <Label Text="Data de início" />
-            <DatePicker Date="{Binding Evento.DataInicio}" />
+            <Label Text="Data de início" FontAttributes="Italic"/>
+            <DatePicker Date="{Binding Evento.DataInicio}"
+                   MinimumDate="{x:Static sys:DateTime.Today}" 
+                   BackgroundColor="White"/>
 
-            <Label Text="Data de término" />
-            <DatePicker Date="{Binding Evento.DataFim}" />
+            <Label Text="Data de término" FontAttributes="Italic"/>
+            <DatePicker Date="{Binding Evento.DataFim}" 
+                   MinimumDate="{Binding Evento.DataInicio}" 
+                   BackgroundColor="White"/>
 
             <Entry Placeholder="Número de participantes"
                    Keyboard="Numeric"
-                   Text="{Binding Evento.NumeroParticipantes}" />
+                   Text="{Binding Evento.NumeroParticipantes,
+                   Mode=TwoWay, StringFormat=''}"
+                   FontAttributes="Italic"
+                   BackgroundColor="White"/>
 
             <Entry Placeholder="Local do evento"
-                   Text="{Binding Evento.Local}" />
+                   Text="{Binding Evento.Local}" 
+                   FontAttributes="Italic"
+                   BackgroundColor="White"/>
 
             <Entry Placeholder="Custo por participante"
                    Keyboard="Numeric"
-                   Text="{Binding Evento.CustoPorParticipante}" />
+                   Text="{Binding Evento.CustoPorParticipante,
+                   Mode=TwoWay, StringFormat=''}"
+                   FontAttributes="Italic"
+                   BackgroundColor="White"/>
 
             <Button Text="Confirmar"
-                    Command="{Binding ConfirmarCommand}" />
+                    Command="{Binding ConfirmarCommand}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
 
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="LightSlateGrey" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6A6A6A" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="black" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+
+            </Button>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
