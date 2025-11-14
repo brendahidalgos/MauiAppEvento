@@ -22,7 +22,7 @@ public class Evento
     public string Local { get; set; } = string.Empty;
     public double CustoPorParticipante { get; set; } 
 
-    // Duração em dias (inclui ambos os dias)
+    //duração em dias (inclui ambos os dias)
     public int DuracaoEmDias
     {
         get

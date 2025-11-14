@@ -12,7 +12,7 @@ public class CadastroEventoViewModel
     {
         ConfirmarCommand = new Command(async () =>
         {
-            // Navega para a página de resumo passando a instância de Evento
+            //navega para a página de resumo passando a instância de Evento
             await Application.Current.MainPage.Navigation.PushAsync(
                 new Views.ResumoEventoPage(Evento)
             );
